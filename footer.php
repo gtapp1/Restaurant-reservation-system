@@ -1,4 +1,4 @@
-<footer class="mt-auto py-4 bg-black text-center border-top border-warning">
+<footer class="mt-auto py-4 bg-black text-center border-warning">
   <div class="container">
     <?php if (session_status()===PHP_SESSION_NONE) session_start(); ?>
     <!-- Quick Links -->

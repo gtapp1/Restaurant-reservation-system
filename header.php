@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="bg-dark text-light">
-<nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-warning">
+<nav class="navbar navbar-expand-lg navbar-dark bg-black border-warning">
   <div class="container">
     <a class="navbar-brand fw-bold text-warning d-flex align-items-center" href="index.php">
       <img src="images/logo.png" alt="La Flamme" class="nav-logo">
