@@ -1,0 +1,150 @@
+body,button,input,select,textarea { font-family: 'Poppins', sans-serif; }
+.hero {
+  background: url('images/hero.jpg') center/cover no-repeat;
+  min-height: 70vh;
+  display:flex;align-items:center;justify-content:center;
+}
+.hero .logo-text { font-size: clamp(3rem,8vw,6rem); font-weight:700; color: #d4af37; text-shadow:0 0 15px rgba(0,0,0,.7); }
+.card.menu-item { background:#111; border:1px solid #333; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease, background-color .25s ease; }
+.card.menu-item:hover,
+.card.menu-item:focus-within {
+  background:#181818;
+  border-color:#d4af37;
+  box-shadow:0 0 12px rgba(212,175,55,.4);
+  transform:translateY(-4px);
+}
+.card.menu-item img { width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; }
+.gold-border { border-color:#d4af37 !important; }
+.btn-gold { background:#d4af37; color:#000; font-weight:600; }
+.btn-gold:hover { background:#c19d2f; }
+.table-dark thead { background:#000; }
+.guest-block { border:1px solid #d4af37; padding:1rem; margin-bottom:1rem; background:#121212; }
+.quantity-input { width:70px; }
+.summary-total { font-size:1.2rem; font-weight:700; color:#d4af37; }
+.card.menu-item p.price,
+.card.menu-item p.mb-1 { /* price text default (semi-transparent) */
+  color: rgba(212,175,55,0.35);
+  transition: color .3s ease, opacity .3s ease;
+}
+/* Active / hover state (correct state) */
+.card.menu-item:hover p.price,
+.card.menu-item:hover p.mb-1 {
+  color: #d4af37;
+  opacity: 1;
+}
+/* Optional focus via keyboard */
+.card.menu-item:focus-within p.price,
+.card.menu-item:focus-within p.mb-1 {
+  color:#d4af37;
+  opacity:1;
+}
+.filter-bar { display:flex; align-items:center; gap:.5rem; }
+.filter-bar select { background:#111; color:#d4af37; border:1px solid #333; }
+.filter-bar select:focus { border-color:#d4af37; box-shadow:0 0 0 .15rem rgba(212,175,55,.25); }
+.category-heading {
+  display:inline-block;
+  background:#d4af37;
+  color:#000;
+  padding:.55rem 1.1rem;
+  font-size:1.05rem;
+  letter-spacing:.05em;
+  font-weight:600;
+  border-radius:4px;
+  box-shadow:0 0 8px rgba(212,175,55,.35);
+  text-transform:uppercase;
+  position:relative;
+}
+.category-heading::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.35) 0%,rgba(255,255,255,0) 60%);
+  mix-blend-mode:overlay;
+  pointer-events:none;
+  border-radius:4px;
+}
+/* Optional hover subtle lift */
+.menu-col:hover ~ .cat-heading .category-heading,
+.category-heading:hover {
+  box-shadow:0 0 12px rgba(212,175,55,.55);
+}
+.menu-desc {
+  font-size:.7rem;
+  line-height:1.15rem;
+  color:rgba(255,255,255,.65);
+  min-height:2.3rem;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  margin-top:.25rem;
+}
+.card.menu-item:hover .menu-desc { color:rgba(255,255,255,.85); }
+
+.about-title {
+  display:inline-block;
+  background:#d4af37;
+  color:#000;
+  padding:.55rem 1.1rem;
+  font-size:1.5rem;
+  letter-spacing:.05em;
+  font-weight:700;
+  border-radius:4px;
+  box-shadow:0 0 8px rgba(212,175,55,.35);
+  text-transform:uppercase;
+  position:relative;
+}
+.about-title:before { display:none; }
+.about-lead {
+  font-size:1rem;
+  line-height:1.55rem;
+  color:rgba(255,255,255,.85);
+  font-weight:500;
+}
+.about-text {
+  font-size:.9rem;
+  line-height:1.45rem;
+  color:rgba(255,255,255,.7);
+  margin-bottom:1rem;
+}
+.about-side {
+  background:#111;
+  border:1px solid #333;
+  border-radius:6px;
+}
+.about-side:hover {
+  border-color:#d4af37;
+  box-shadow:0 0 12px rgba(212,175,55,.35);
+  transition:.3s;
+}
+.about-list {
+  list-style:none;
+  padding-left:0;
+  margin:0;
+}
+.about-list li {
+  position:relative;
+  padding-left:1.1rem;
+  margin-bottom:.4rem;
+  font-size:.8rem;
+  color:rgba(255,255,255,.7);
+}
+.about-list li:before {
+  content:'•';
+  position:absolute;
+  left:0;
+  top:0;
+  color:#d4af37;
+  font-size:.9rem;
+  line-height:1rem;
+}
+.about-main {
+  padding:1.75rem 1.75rem;
+  margin-bottom:1rem;
+}
+.nav-logo { height:64px; width:auto; display:block; }
+@media (max-width:576px){ .nav-logo { height:52px; } }
+.brand-logo { width: clamp(220px,40vw,520px); height:auto; filter:drop-shadow(0 0 10px rgba(0,0,0,.6)); }
+@media (min-width:768px){
+  .about-main { margin-bottom:0; }
+}
