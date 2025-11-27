@@ -1,9 +1,27 @@
-# La Flamme Restaurant Reservation System
+# La Flamme Restaurant Reservation  - Windows Deployment Guide (XAMPP)
 
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+
+---
+
+<img width="1920" height="2220" alt="image" src="https://github.com/user-attachments/assets/5b4471b3-b37b-4c1a-ad12-3e5109210e47" />
+
+---
+
+<img width="1920" height="1936" alt="image" src="https://github.com/user-attachments/assets/cd964d72-e6f3-4546-8c47-8e30de4690be" />
+
+---
+
+<img width="1920" height="1215" alt="image" src="https://github.com/user-attachments/assets/7beec3ec-4f7c-45d1-870b-760563f4c23b" />
+
+---
+
+<img width="1920" height="1041" alt="image" src="https://github.com/user-attachments/assets/177120cb-01d6-465d-b338-566a932d5094" />
+
+---
 
 ## Deployment Guide (XAMPP, Windows)
 
