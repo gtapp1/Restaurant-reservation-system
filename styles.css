@@ -148,3 +148,76 @@ body,button,input,select,textarea { font-family: 'Poppins', sans-serif; }
 @media (min-width:768px){
   .about-main { margin-bottom:0; }
 }
+
+/* ==========================================================================
+   UI/UX REFINEMENT - FORM CONTROLS & INPUTS
+   ========================================================================== */
+.form-control, .form-select {
+  background-color: #181818 !important;
+  border: 1px solid #2a2a2a !important;
+  color: #e0e0e0 !important;
+  border-radius: 5px;
+}
+.form-control:focus, .form-select:focus {
+  background-color: #181818 !important;
+  color: #e0e0e0 !important;
+  border-color: #d4af37 !important;
+  box-shadow: 0 0 0 0.2rem rgba(212,175,55,0.15) !important;
+}
+.form-control::placeholder { color: #555 !important; }
+.form-label {
+  font-size: 0.85rem !important;
+  color: #d4af37 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+
+/* ==========================================================================
+   ALERTS (Subdued Dark-Theme Alerts)
+   ========================================================================== */
+.alert-success {
+  background-color: rgba(32, 201, 151, 0.1) !important;
+  border-color: rgba(32, 201, 151, 0.3) !important;
+  color: #20c997 !important;
+}
+.alert-danger {
+  background-color: rgba(220, 53, 69, 0.1) !important;
+  border-color: rgba(220, 53, 69, 0.3) !important;
+  color: #e05b68 !important;
+}
+.alert-info {
+  background-color: rgba(13, 202, 253, 0.1) !important;
+  border-color: rgba(13, 202, 253, 0.3) !important;
+  color: #0dcaf0 !important;
+}
+
+/* ==========================================================================
+   TABLES (Refined Readability)
+   ========================================================================== */
+.table-dark {
+  --bs-table-bg: #0a0a0a !important;
+  --bs-table-border-color: #1f1f1f !important;
+  color: #c0c0c0 !important;
+}
+.table-dark thead th {
+  color: #d4af37 !important;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid #333 !important;
+}
+.table-dark tbody tr:hover td {
+  background-color: #141414 !important;
+}
+
+/* ==========================================================================
+   UI CONTAINERS & CARDS
+   ========================================================================== */
+.premium-card {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}

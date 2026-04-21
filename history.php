@@ -23,10 +23,21 @@ $res->bind_param('i',$_SESSION['user_id']); $res->execute(); $reservations=$res-
         <strong><?=htmlspecialchars($r['res_date'])?> <?=htmlspecialchars(substr($r['res_time'],0,5))?></strong>
         <span class="ms-2 badge bg-warning text-dark"><?=htmlspecialchars($r['table_pref'])?></span>
         <span class="ms-2 small text-light">ID: <?=$rid?></span>
+        <?php
+          $status = $r['status'] ?? 'pending';
+          $bgMap = [
+              'pending'   => 'bg-warning text-dark',
+              'confirmed' => 'bg-success text-light',
+              'cancelled' => 'bg-danger text-light',
+              'completed' => 'bg-info text-dark'
+          ];
+          $badgeClass = $bgMap[$status] ?? 'bg-secondary';
+        ?>
+        <span class="ms-3 badge <?= $badgeClass ?> fs-6"><?= ucfirst($status) ?></span>
       </div>
       <div class="btn-group btn-group-sm mt-2 mt-md-0" role="group">
         <a href="reservation_summary.php?id=<?=$rid?>" target="_blank" class="btn btn-outline-light border-warning" title="View / Print">View / PDF</a>
-        <?php if($isFuture): ?>
+        <?php if($isFuture && $status !== 'cancelled'): ?>
         <form method="post" action="reservation_cancel.php" onsubmit="return confirm('Cancel this future reservation?');">
           <input type="hidden" name="id" value="<?=$rid?>">
           <button class="btn btn-outline-danger" title="Cancel">Cancel</button>
@@ -49,7 +60,11 @@ $res->bind_param('i',$_SESSION['user_id']); $res->execute(); $reservations=$res-
       </tbody>
     </table>
     <p class="mb-0 text-end text-warning fw-semibold">Total: ₱<?=number_format($total,2)?></p>
-    <?php if(!$isFuture): ?><p class="mb-0 text-end small text-muted">Completed / Past</p><?php endif; ?>
+    <?php if (!$isFuture && $status !== 'cancelled'): ?>
+      <p class="mb-0 text-end small text-muted">Past / Completed</p>
+    <?php elseif ($status === 'cancelled'): ?>
+      <p class="mb-0 text-end small text-danger fw-semibold">Reservation Cancelled</p>
+    <?php endif; ?>
   </div>
   <?php endforeach; ?>
 </div>

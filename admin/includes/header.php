@@ -79,18 +79,24 @@ body { background: #0a0a0a; color: #e0e0e0; min-height: 100vh; display: flex; ma
 .stat-card .stat-icon   { font-size: 2rem; color: rgba(212,175,55,.2); }
 
 /* Admin Table */
-.admin-table { margin: 0; width: 100%; }
+.admin-table { margin: 0; width: 100%; --bs-table-bg: transparent; --bs-table-color: #c0c0c0; }
 .admin-table thead th {
-  background: #0a0a0a; color: #d4af37; font-size: .72rem;
+  background-color: #0a0a0a !important; color: #d4af37 !important; font-size: .72rem;
   text-transform: uppercase; letter-spacing: .08em;
-  border-bottom: 1px solid #222; border-top: none; padding: .75rem 1rem;
+  border-bottom: 1px solid #222 !important; border-top: none; padding: .75rem 1rem;
   white-space: nowrap;
 }
-.admin-table tbody tr { border-bottom: 1px solid #161616; }
+.admin-table tbody tr { border-bottom: 1px solid #161616; background-color: transparent !important; }
 .admin-table tbody tr:last-child { border-bottom: none; }
-.admin-table tbody tr:hover { background: #141414; }
-.admin-table tbody td { padding: .6rem 1rem; font-size: .82rem; color: #c0c0c0; vertical-align: middle; border: none; }
-.admin-table tfoot td { padding: .65rem 1rem; font-size: .82rem; border-top: 1px solid #222; border-bottom: none; }
+.admin-table tbody tr:hover td { background-color: #141414 !important; }
+.admin-table tbody td {
+  padding: .6rem 1rem; font-size: .82rem; color: #c0c0c0 !important;
+  vertical-align: middle; border: none; background-color: transparent !important;
+}
+.admin-table tfoot td {
+  padding: .65rem 1rem; font-size: .82rem; border-top: 1px solid #222 !important;
+  border-bottom: none; background-color: transparent !important; color: #c0c0c0 !important;
+}
 
 /* Status badges */
 .badge-status {
