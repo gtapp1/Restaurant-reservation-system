@@ -4,25 +4,36 @@
 -- ============================================================
 USE laflamme;
 
+-- ============================================================
 -- 1. Add status, admin_notes, updated_at to reservations
+-- ============================================================
 ALTER TABLE reservations
   ADD COLUMN status ENUM('pending','confirmed','cancelled','completed') NOT NULL DEFAULT 'pending' AFTER guest_count,
   ADD COLUMN admin_notes TEXT NULL AFTER status,
   ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER admin_notes;
 
+-- ============================================================
 -- 2. Add description + is_available to menu_items
+-- ============================================================
 ALTER TABLE menu_items
   ADD COLUMN description TEXT NULL AFTER image,
   ADD COLUMN is_available TINYINT(1) NOT NULL DEFAULT 1 AFTER description;
 
--- 3. Admin roles
+-- ============================================================
+-- 3. Admin roles table
+-- ============================================================
 CREATE TABLE IF NOT EXISTS admin_roles (
   id   TINYINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(50) NOT NULL
 );
-INSERT INTO admin_roles (id, name) VALUES (1, 'Super Admin'), (2, 'Staff');
 
+INSERT INTO admin_roles (id, name) VALUES
+  (1, 'Super Admin'),
+  (2, 'Staff');
+
+-- ============================================================
 -- 4. Admins table
+-- ============================================================
 CREATE TABLE IF NOT EXISTS admins (
   id            INT AUTO_INCREMENT PRIMARY KEY,
   username      VARCHAR(60) UNIQUE NOT NULL,
@@ -35,8 +46,8 @@ CREATE TABLE IF NOT EXISTS admins (
   FOREIGN KEY (role_id) REFERENCES admin_roles(id)
 );
 
--- Default super admin
--- IMPORTANT: Replace the hash below with: php -r "echo password_hash('Admin@1234', PASSWORD_BCRYPT);"
+-- Default Super Admin account (password: Admin@1234)
+-- Hash generated with: php -r "echo password_hash('Admin@1234', PASSWORD_BCRYPT);"
 INSERT INTO admins (username, email, password_hash, role_id) VALUES (
   'superadmin',
   'admin@laflamme.com',
@@ -44,7 +55,9 @@ INSERT INTO admins (username, email, password_hash, role_id) VALUES (
   1
 );
 
+-- ============================================================
 -- 5. Admin activity log
+-- ============================================================
 CREATE TABLE IF NOT EXISTS admin_logs (
   id         INT AUTO_INCREMENT PRIMARY KEY,
   admin_id   INT NOT NULL,
@@ -53,3 +66,15 @@ CREATE TABLE IF NOT EXISTS admin_logs (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (admin_id) REFERENCES admins(id) ON DELETE CASCADE
 );
+
+-- ============================================================
+-- FIX S6: Fix the reservations.user_id FK to allow user deletion.
+-- Original FK had no ON DELETE action — caused FK violation when
+-- admin tried to delete a user.
+-- Using SET NULL so reservation history is PRESERVED (not deleted)
+-- when the associated user account is removed.
+-- ============================================================
+ALTER TABLE reservations DROP FOREIGN KEY reservations_ibfk_1;
+ALTER TABLE reservations
+  ADD CONSTRAINT fk_reservations_user
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL;

@@ -74,9 +74,8 @@ switch ($action) {
         break;
 }
 
-// Redirect back — support returning from detail view
 $ref = $_SERVER['HTTP_REFERER'] ?? '';
-if (str_contains($ref, 'reservation_view.php')) {
+if (strpos($ref, 'reservation_view.php') !== false) {
     header('Location: reservations.php');
 } else {
     header('Location: reservations.php');

@@ -43,8 +43,8 @@ $today=date('Y-m-d');
       <div class="col-md-4">
         <label class="form-label">Table Preference</label>
         <select name="table_pref" class="form-select" required>
-          <?php foreach(['Window','Center','Corner','Outdoor','Alfresco'] as $tp): ?>
-            <option <?=$tp===$res['table_pref']?'selected':''?>><?=$tp?></option>
+          <?php foreach (['Window', 'Center', 'Corner', 'Alfresco'] as $tp): ?>
+            <option <?= $tp === $res['table_pref'] ? 'selected' : '' ?>><?= $tp ?></option>
           <?php endforeach; ?>
         </select>
       </div>
