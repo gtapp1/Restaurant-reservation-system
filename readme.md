@@ -1,4 +1,4 @@
-# La Flamme Restaurant Reservation  - Windows Deployment Guide (XAMPP)
+# La Flamme Restaurant Reservation - Windows Deployment Guide (XAMPP)
 
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
@@ -23,70 +23,84 @@
 
 ---
 
+## 🚀 Key Features & Recent Upgrades
+
+1. **Complete Admin Dashboard:** A fully isolated, secure administration panel located at `/admin`. Supports Staff and Super Admin roles, analytics, comprehensive reservation editing, user management, menu editing, and full audit logs.
+2. **Unified Premium UI/UX:** Form controls, tables, and alert dialogs have been unified across the entire application using a premium dark-mode aesthetic with gold accents.
+3. **Data Integrity & Security:** Hardened against SQL Injection via prepared statements. Foreign keys updated to handle user deletion without wiping reservation history (ON DELETE SET NULL).
+4. **Historical Bookings:** Cancelling a reservation now safely marks its status as "cancelled" instead of destroying the record, preserving it for auditing and customer history.
+
 ## Deployment Guide (XAMPP, Windows)
 
 ### 1. Prerequisites
 
 - [XAMPP](https://www.apachefriends.org/) installed (Apache + MySQL)
-- PHP 8.0+ recommended
+- PHP 7.4+ or 8.0+ recommended
 - Git (optional, for cloning)
 
 ### 2. Clone or Copy Files
 
-- Place all project files in:  
-  `C:\xampp\htdocs\Laflamme`
+- Place all project files in your XAMPP htdocs directory:  
+  `C:\xampp\htdocs\Restaurant-reservation-system`
 
 ### 3. Database Setup
 
 - Start XAMPP Control Panel (run Apache & MySQL)
 - Open [phpMyAdmin](http://localhost/phpmyadmin)
-- Import `init_db.sql`:
-  - Click "Import"
-  - Choose `init_db.sql` from the project folder
-  - Execute
+- **Step A:** Import `database/init_db.sql` (Initial customer tables)
+- **Step B:** Import `database/admin_schema_update.sql` (Creates the admin roles, accounts, logic, and foreign key fixes)
+
+*(Note: If the SQL files are in the main directory instead of `/database/`, import them from the root folder in the exact order above).*
 
 ### 4. Images
 
 - Place all menu and gallery images in:  
-  `C:\xampp\htdocs\Laflamme\images`
+  `C:\xampp\htdocs\Restaurant-reservation-system\images`
 - Required images:
-  - All menu item images (600x400px, see menu.php)
+  - All menu item images (600x400px, see `menu.php`)
   - Hero images: `hero1.jpg`, `hero2.jpg`, `hero3.jpg`
   - Logo: `logo.png` (recommended size: 600x400px or larger)
-  - Gallery images: `gallery1.jpg` ... `gallery6.jpg`
 
 ### 5. Configure Database Connection
 
-- Edit `db.php` if your MySQL password/user differs:
+- Edit `db.php` if your MySQL password/user differs (Default assumes `root` with no password):
   ```php
   $mysqli = new mysqli('localhost','root','','laflamme');
   ```
+- Also ensure `admin/includes/db.php` shares the same configuration.
 
 ### 6. Start the Application
 
-- Visit [http://localhost/Laflamme](http://localhost/Laflamme) in your browser
+- **Public Site:** Visit [http://localhost/Restaurant-reservation-system](http://localhost/Restaurant-reservation-system)
+- **Admin Panel:** Visit [http://localhost/Restaurant-reservation-system/admin](http://localhost/Restaurant-reservation-system/admin)
 
 ### 7. Usage
 
-- Sign up for an account
-- Log in
-- Browse menu, make reservations, view booking history
-- Use reservation summary for print/PDF (with QR code)
-- Admin features not included (user-only system)
+**Customer Portal:**
+- Sign up for an account / Log in
+- Browse the dynamic menu
+- Make reservations and view booking history (with live status tracking)
+- Generate a reservation summary PDF/Print view with QR codes
 
-### 8. Notes
+**Admin Panel:**
+- Login using the default superadmin credentials established in your `admin_schema_update.sql` file.
+- View dashboard analytics and statistics.
+- Confirm, complete, edit, or cancel reservations securely.
+- Toggle active user statuses or promote/delete staff accounts.
 
-- No frameworks or package managers required
-- Pure PHP, MySQL, Bootstrap, JS
-- For best results, use Chrome or Edge
-- For production, secure `db.php` and set strong MySQL password
+### 8. Technical Notes
+
+- No frameworks or package managers required (No Laravel, no Composer).
+- Pure procedural PHP, MySQLi, Bootstrap 5, Vanilla JS.
+- Fully compatible with XAMPP environments out-of-the-box.
+- For production use, please implement HTTPS, set strong MySQL passwords, and rotate the default admin credentials.
 
 ---
 
 **Troubleshooting:**
-- If you see database errors, check that MySQL is running and DB credentials are correct.
-- If images do not appear, verify filenames and image folder.
-- For PHP errors, check file permissions and PHP version.
+- **Database Errors:** Check that MySQL is running and DB credentials in `db.php` and `admin/includes/db.php` are identical and correct.
+- **Images Missing:** Verify exact filenames and ensure the `images/` folder has proper read permissions.
+- **Session Issues:** Ensure no whitespace or HTML exists before `<?php` tags in files, which can break `session_start()`.
 
 ---
 
